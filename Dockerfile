@@ -14,4 +14,6 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 #bazel build system
 RUN wget https://github.com/bazelbuild/bazel/releases/download/0.3.2/bazel-0.3.2-installer-linux-x86_64.sh
 RUN chmod +x bazel-0.3.2-installer-linux-x86_64.sh
+RUN sh ./bazel-0.3.2-installer-linux-x86_64.sh
+RUN source /usr/local/lib/bazel/bin/bazel-complete.bash
 RUN echo "source /usr/local/lib/bazel/bin/bazel-complete.bash" >> ~/.bashrc
