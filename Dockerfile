@@ -5,7 +5,7 @@ RUN apt-get update && apt-get install -y curl \
     python3 \
     python3-pip \
     wget
-RUN apt-get install -y cmake pkg-config zip g++ zlib1g-dev unzip apt-get python3-numpy swig python3-dev python3-wheel
+RUN apt-get install -y cmake pkg-config zip g++ zlib1g-dev unzip python3-numpy swig python3-dev python3-wheel
 RUN pip3 install --upgrade pip
 RUN pip3 install -U scikit-learn jupyter 
 RUN apt-get install -y default-jdk
