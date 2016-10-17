@@ -12,12 +12,18 @@ RUN apt-get install -y default-jdk
 RUN ln -s /usr/bin/python3 /usr/bin/python
 
 #bazel build system
-# Cannot use 0.3.2 because the installation script does not work sometimes.
-RUN wget -q https://github.com/bazelbuild/bazel/releases/download/0.3.1/bazel-0.3.1-installer-linux-x86_64.sh
-RUN chmod +x bazel-0.3.1-installer-linux-x86_64.sh
-# Run it twice, bug in bazel script?
-RUN ./bazel-0.3.1-installer-linux-x86_64.sh
-ENV PATH=$PATH:/usr/local/bin
+RUN echo "deb [arch=amd64] http://storage.googleapis.com/bazel-apt stable jdk1.8" |  tee /etc/apt/sources.list.d/bazel.list
+RUN curl https://bazel.io/bazel-release.pub.gpg |  apt-key add -
+RUN apt-get update &&  apt-get install -y bazel
+RUN apt-get upgrade -y bazel
+############################################################
+## Cannot use 0.3.2 because the installation script does not work sometimes.
+#RUN wget -q https://github.com/bazelbuild/bazel/releases/download/0.3.1/bazel-0.3.1-installer-linux-x86_64.sh
+#RUN chmod +x bazel-0.3.1-installer-linux-x86_64.sh
+## Run it twice, bug in bazel script?
+#RUN ./bazel-0.3.1-installer-linux-x86_64.sh
+#ENV PATH=$PATH:/usr/local/bin
 
-#RUN /usr/local/lib/bazel/bin/bazel-complete.bash
-RUN echo "source /usr/local/lib/bazel/bin/bazel-complete.bash" >> ~/.bashrc
+##RUN /usr/local/lib/bazel/bin/bazel-complete.bash
+#RUN echo "source /usr/local/lib/bazel/bin/bazel-complete.bash" >> ~/.bashrc
+###########################################################
